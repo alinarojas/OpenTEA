@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+/* ===========================
+   VARIABLES DE COLOR
+   =========================== */
+:root {
+  --background: #ffff;
+  --foreground: #171717;
+}
+
+@theme {
+  --color-brandBlue: #4A72C2;
+  --color-brandGreen: #5CA97D;
+  --color-brandBrown: #C89A6A;
+  --color-brandGrayLight: #F5F5F5;
+  --color-brandGray: #D4D4D4;
+  --color-brandGrayDark: #2E2E2E;
+}
+
+/* ===========================
+   FUENTES LOCALES
+   =========================== */
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/atkinson/AtkinsonHyperlegible-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/atkinson/AtkinsonHyperlegible-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===========================
+   FUENTE GLOBAL
+   =========================== */
+html {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}

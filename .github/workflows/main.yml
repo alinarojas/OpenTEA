@@ -1,0 +1,28 @@
+name: Deploy to Production
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  sync-branch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Important: allows the bot to push code
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: production
+          fetch-depth: 0 
+
+      - name: Merge main into production
+        run: |
+          # Configure git bot
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Merge main into production
+          git merge origin/main --no-edit
+          
+          # Push to trigger Vercel
+          git push origin production
