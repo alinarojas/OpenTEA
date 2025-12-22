@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import Cookies from "js-cookie";
+import { usePathname, useSearchParams } from "next/navigation";
+import { CATEGORY_CONFIG } from "@/src/config/categories"; 
 
 const FlagES = () => (
   <svg viewBox="0 0 640 480" className="w-5 h-5 rounded-sm">
@@ -38,10 +40,30 @@ const LANGUAGES = [
   { code: "en", label: "EN", flag: <FlagEN /> },
 ];
 
+// --- HELPER TO TRANSLATE SLUGS ---
+function getTranslatedSlug(currentSlug: string, targetLang: string) {
+  // Find which category the current slug belongs to (either English or Spanish)
+  const entry = Object.values(CATEGORY_CONFIG).find((cat: any) => 
+    cat.slug.en === currentSlug || cat.slug.es === currentSlug
+  );
+
+  // If the category is found, return the slug for the target language
+  if (entry) {
+    return entry.slug[targetLang as 'en' | 'es'];
+  }
+
+  // If it's not a translatable category (e.g., a search term), return it as is
+  return currentSlug;
+}
+
 export default function LanguageToggle() {
   const [lang, setLang] = useState<string>("es");
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  
+  // Navigation hooks to read the current URL
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   /* Load cookie language */
   useEffect(() => {
@@ -64,9 +86,27 @@ export default function LanguageToggle() {
   const other = LANGUAGES.filter((l) => l.code !== lang);
 
   const select = (newLang: string) => {
+    // 1. Save language preference
     Cookies.set("lang", newLang, { path: "/" });
-    window.location.reload();
+
+    // 2. Calculate the new URL with translated parameters
+    const currentParams = new URLSearchParams(searchParams.toString());
+    const currentCategory = currentParams.get('category');
+
+    if (currentCategory) {
+      // Translate "horarios-visuales" -> "visual-schedules" (or vice versa)
+      const translatedSlug = getTranslatedSlug(currentCategory, newLang);
+      currentParams.set('category', translatedSlug);
+    }
+
+    // 3. Force navigation to the new URL
+    // We use window.location.href instead of router.push to ensure 
+    // the server receives the new cookie upon reload.
+    const newUrl = `${pathname}?${currentParams.toString()}`;
+    window.location.href = newUrl;
   };
+
+  if (!current) return null; // Prevents crash if language hasn't loaded yet
 
   return (
     <div ref={wrapperRef} className="relative inline-block text-left">
@@ -90,7 +130,7 @@ export default function LanguageToggle() {
 
       {/* Dropdown */}
       <div
-        className={`absolute right-0 mt-2 w-28 bg-white border border-brandGray rounded-soft shadow-md transition-all duration-300 origin-top-right ${open
+        className={`absolute right-0 mt-2 w-28 bg-white border border-brandGray rounded-soft shadow-md transition-all duration-300 origin-top-right z-50 ${open
             ? "opacity-100 scale-100"
             : "opacity-0 scale-95 pointer-events-none"
           }`}

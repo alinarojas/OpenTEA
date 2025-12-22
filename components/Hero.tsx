@@ -29,7 +29,7 @@ export default function Hero({ lang = "es" }: { lang?: string }) {
 
   return (
     <section className="bg-gradient-to-r from-[#F7FAFF] via-[#FDFCFB] to-[#F3FBF6]">
-      <div className="max-w-6xl mx-auto px-6 py-20 grid gap-12 lg:grid-cols-2 items-center">
+      <div className="max-w-6xl mx-auto px-6 py-10 md:py-20 grid gap-12 lg:grid-cols-2 items-center">
         {/* TEXT COLUMN */}
         <div className="space-y-6">
           <div className="flex justify-center lg:justify-start mb-10">

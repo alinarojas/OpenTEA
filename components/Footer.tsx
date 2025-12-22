@@ -27,7 +27,7 @@ export function Footer({ lang = "es" }: { lang?: string }) {
   const content = translations[lang as keyof typeof translations] || translations.es;
 
   return (
-    <footer className="bg-white border-t border-gray-100 pt-16 pb-12">
+    <footer className="bg-white border-t border-brandGrayLight pt-16 pb-12">
       <div className="container mx-auto px-6 flex flex-col items-center text-center">
 
         <div className="mb-8 relative group">
@@ -68,14 +68,14 @@ export function Footer({ lang = "es" }: { lang?: string }) {
         </div>
 
         {/* Separator */}
-        <div className="w-12 h-px bg-gray-200 mb-6"></div>
+        <div className="w-12 h-px bg-brandGray mb-6"></div>
 
         {/* Copyright & Tagline */}
         <div className="space-y-2">
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">
+            <p className="text-xs font-medium text-brandGrayDark/60 uppercase tracking-wider">
             © {new Date().getFullYear()} OpenTEA
             </p>
-            <p className="text-sm text-gray-500 font-medium">
+            <p className="text-sm text-brandGrayDark/50 font-medium">
              {content.builtWith}
             </p>
         </div>

@@ -10,8 +10,8 @@ Our goal is to help families, therapists and users find the right digital tools 
 
 ## 🚀 Tech stack
 
-- **Framework:** [Next.js 16](https://nextjs.org/)
-- **Database & Auth:** [Supabase](https://supabase.com/)
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Database:** [Supabase](https://supabase.com/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Icons:** [Font Awesome](https://fontawesome.com/) & [React Icons](https://react-icons.github.io/react-icons/)
 - **Deployment:** [Vercel](https://vercel.com/)

@@ -188,18 +188,18 @@ export default async function AboutPage() {
         </div>
 
         {/* Contact CTA */}
-        {/* <div className="mt-12 text-center space-y-6">
+        <div className="mt-12 text-center space-y-6">
           <h3 className="text-xl font-semibold text-brandGrayDark">
             {content.contactTitle}
           </h3>
           <a
-            href="mailto:opentea@gmail.com"
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-brandBlue text-white font-bold transition-all hover:bg-brandBlue/90 hover:shadow-xl hover:-translate-y-1"
+            href="mailto:openteaapp@gmail.com"
+            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-brandBlue text-white font-bold transition-all hover:bg-brandBlue/90 hover:shadow-lg"
           >
             <FaEnvelope />
             {content.contactButton}
           </a>
-        </div> */}
+        </div>
       </div>
     </main>
   );
