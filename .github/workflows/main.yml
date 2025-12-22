@@ -1,19 +1,23 @@
 name: Deploy to Production
 
 on:
+  # Automatically trigger when a Release is published
   release:
     types: [published]
+  
+  # Manually trigger via the "Run workflow" button on GitHub
+  workflow_dispatch:
 
 jobs:
   sync-branch:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Important: allows the bot to push code
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           ref: production
-          fetch-depth: 0 
+          fetch-depth: 0
 
       - name: Merge main into production
         run: |

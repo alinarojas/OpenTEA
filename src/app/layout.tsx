@@ -2,7 +2,9 @@ import "./globals.css";
 
 import { cookies } from "next/headers";
 import type { Metadata } from "next";
+
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from "@vercel/analytics/next"
 
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -69,6 +71,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
       )}
+      <Analytics/>
     </html>
   );
 }
