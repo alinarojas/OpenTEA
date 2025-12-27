@@ -19,14 +19,14 @@ jobs:
           ref: production
           fetch-depth: 0
 
-      - name: Merge main into production
+      - name: Merge dev into main
         run: |
           # Configure git bot
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Merge main into production
-          git merge origin/main --no-edit
+          # Merge dev into main
+          git merge origin/dev --no-edit
           
           # Push to trigger Vercel
-          git push origin production
+          git push origin main
