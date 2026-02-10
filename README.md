@@ -51,7 +51,7 @@ yarn install
 Create a `.env` file in the root directory and add your Supabase credentials. You can find these in your Supabase Project Settings -> API.
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=[https://your-project-url.supabase.co](https://your-project-url.supabase.co)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-url.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 

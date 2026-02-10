@@ -9,9 +9,15 @@ import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
+type Lang = "en" | "es";
+
+function resolveLang(value?: string): Lang {
+  return value === "en" || value === "es" ? value : "es";
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
-  const lang = cookieStore.get("lang")?.value || "es";
+  const lang: Lang = resolveLang(cookieStore.get("lang")?.value);
 
   const icons = {
     icon: "/logo.png",
@@ -57,14 +63,17 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const cookieStore = await cookies();
-  const lang = cookieStore.get("lang")?.value || "es";
+  const lang: Lang = resolveLang(cookieStore.get("lang")?.value);
 
   return (
     <html lang={lang}>
       <body>
-        
         <Navbar lang={lang} />
         {children}
         <Footer lang={lang} />
@@ -73,8 +82,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
         )}
         <Analytics />
-
       </body>
     </html>
   );
 }
+
