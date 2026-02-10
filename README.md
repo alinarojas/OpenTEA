@@ -34,7 +34,7 @@ Our goal is to help families, therapists and users find the right digital tools 
 ### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/alinarojas/opentea.git](https://github.com/alinarojas/opentea.git)
+git clone https://github.com/alinarojas/opentea.git
 cd opentea
 ```
 

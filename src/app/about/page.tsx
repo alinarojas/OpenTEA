@@ -10,6 +10,7 @@ import {
   FaCode,
   FaUniversalAccess,
 } from "react-icons/fa";
+import { CONTACT_LINK } from "@/data/contact-info";
 
 
 import { highlightEmphasis } from "@/src/utils/formatEmphasis";
@@ -193,7 +194,7 @@ export default async function AboutPage() {
             {content.contactTitle}
           </h3>
           <a
-            href="mailto:openteaapp@gmail.com"
+            href={`mailto:${CONTACT_LINK.EMAIL}`}
             className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-brandBlue text-white font-bold transition-all hover:bg-brandBlue/90 hover:shadow-lg"
           >
             <FaEnvelope />
